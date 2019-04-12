@@ -25,7 +25,7 @@ const CharacterList = props => {
   console.log('props on <CharacterList />', props)
   return (
       <div>
-        <h2>Star Wars Characters</h2>
+        <h2>Star Wars Fight Club</h2>
         <button
           onClick={ clickHandler_getCharacters }
         >Get Characters</button>
