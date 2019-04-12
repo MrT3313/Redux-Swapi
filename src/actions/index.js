@@ -12,7 +12,6 @@
     // remember that now we have controll over our thunk-based action creator
 // ** -- END LAMBDA NOTES - ** //
 
-
 // ** -- THUNKS - ** //
     // -!!- THUNK - function that returns a function
     // -!!- THUNK can be used as action creator
@@ -30,8 +29,9 @@
         // --> ^ annon function that returns anon function with dispatch passed into it
         // --> ^^ returns an ACTION OBJECT by calling dispatch
 
+    // -- ACTION CREATOR -- //
     export const getCharacters = () => {
-        // RETURN A FUNCTION 
+        // -- THUNK -- // 
         return (dispatch) => {
             // dispatch a starting action
             dispatch({type: SWAPI_FETCHING})
@@ -39,12 +39,23 @@
             axios
             .get('https://swapi.co/api/people/')
                 .then( res => {
-                    console.log(res)
+                    console.log('SUCCESSFUL API CALL: ', res)
+                    dispatch({
+                        type: SWAPI_SUCCESS,
+                        payload: res.data
+                    })
                 })
                 .catch( err => {
                     console.log( err )
+                    dispatch({
+                        type: SWAPI_FAILURE,
+                        payload: err
+                    })
                 })
         }
+        // ** -- END THUNK - ** //
     }
+// -- ** END ACTION CREATOR ** -- //
 
-// ** -- END THUNK - ** //
+
+

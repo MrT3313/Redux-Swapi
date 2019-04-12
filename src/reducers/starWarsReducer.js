@@ -25,34 +25,18 @@ export const charsReducer = (state = initialState, action) => {
         err: '',
       }
 
+    case SWAPI_SUCCESS:
+      return {
+        ...state,
+        characters: action.payload,
+        isFetching: false,
+        err: '',
+      }
+    case SWAPI_FAILURE:
+      return {
+        ...state, 
+      }
 
-
-
-
-
-
-
-
-
-
-
-    // case SWAPI_SUCCESS:
-    //   console.log(action)
-    //   console.log(action.payload)
-    //   return {
-    //     ...state,
-    //     characters: action.payload,
-    //     isFetching: false,
-    //     err: ''
-    //   }
-    // case SWAPI_FAILURE:
-    //   console.log(action)
-    //   console.log(action.payload)
-    //   return {
-    //       ...state,
-    //       isFetching: false,
-    //       err: 'Oh LaaaaWWWWWDD you dont messed this up'
-    //   }
     default:
       return state;
   }

@@ -24,44 +24,27 @@ const CharacterList = props => {
   
   console.log('props on <CharacterList />', props)
   return (
-    <React.Fragment>
-      <h2>Star Wars Characters</h2>
-      <button
-        onClick={ clickHandler_getCharacters }
-      >Get Characters</button>
-      { props.error && <p>{props.error}</p> }
-      { props.isFetching && <p>Calm Yourself - The Characters Are Loading</p> }
-      
-      {/* <ul>
-        {
-          props.err && 
-          (
-            <h2>{props.err}</h2>
-          )
+      <div>
+        <h2>Star Wars Characters</h2>
+        <button
+          onClick={ clickHandler_getCharacters }
+        >Get Characters</button>
+        { props.error && <p>{props.error}</p> }
+        { props.isFetching && <p>Calm Yourself - The Characters Are Loading</p> }
+        
+        { props.characters.results && 
+            props.characters.results.map( character => {
+              return <Character key={character.name} character={character} />
+            })
         }
-        {
-          props.characters ? 
-        (
-          props.characters.map(character => {
-            return <Character key={character.name} character={character} />;
-          })
-        )
-        :
-        (
-          <button
-            onClick={clickHandler_getCharacters}
-          >Get Characters</button>
-        )
-        }
-      </ul> */}
-    </React.Fragment>
+      </div>
   );
 };
 
 const mapStateToProps = state => ({
-  characters: state.characters,
-  err: state.err,
-  isFetching: state.isFetching
+  characters: state.charsReducer.characters,
+  err: state.charsReducer.err,
+  isFetching: state.charsReducer.isFetching
 
 })
 
