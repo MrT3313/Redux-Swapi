@@ -1,6 +1,12 @@
-import { combineReducers } from 'redux';
-import { charsReducer } from './starWarsReducer';
 
-export default combineReducers({
+// REDUX
+  import { combineReducers } from 'redux';
+// REDUCERS
+  import { charsReducer } from './starWarsReducer';
+
+// ** -- START CODE -- ** //
+// ** -- START CODE -- ** //
+
+export const rootReducer = combineReducers({
   charsReducer
 });
