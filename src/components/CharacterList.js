@@ -17,19 +17,20 @@ const CharacterList = props => {
   const clickHandler_getCharacters = e => {
     e.preventDefault()
     console.log('<CharacterList /> button click handler')
+    console.log('<CharacterList /> PROPS', props)
     // INVOKE ACTION CREATOR
     props.getCharacters()
   }
   
+  console.log('props on <CharacterList />', props)
   return (
     <React.Fragment>
       <h2>Star Wars Characters</h2>
       <button
         onClick={ clickHandler_getCharacters }
       >Get Characters</button>
-      {
-        props.error && <p>{props.error}</p>
-      }
+      { props.error && <p>{props.error}</p> }
+      { props.isFetching && <p>Calm Yourself - The Characters Are Loading</p> }
       
       {/* <ul>
         {
@@ -59,7 +60,9 @@ const CharacterList = props => {
 
 const mapStateToProps = state => ({
   characters: state.characters,
-  err: state.err
+  err: state.err,
+  isFetching: state.isFetching
+
 })
 
 export default connect(mapStateToProps, { getCharacters }) (CharacterList);

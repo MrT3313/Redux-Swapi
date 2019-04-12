@@ -6,47 +6,45 @@
     export const SWAPI_SUCCESS  = 'SWAPI_SUCCESS' 
     export const SWAPI_FAILURE  = 'SWAPI_FAILURE'
 
-// SET ONCLICK ACTION TO FUNCTION 
-    export const getCharacters = () => ({
-        type: SWAPI_FETCHING
-    })
+// ** -- LAMBDA NOTES -- ** //
+    // our action creator will be a function that returns a function
+    // the url to fetch characters from is `https://swapi.co/api/people/`
+    // remember that now we have controll over our thunk-based action creator
+// ** -- END LAMBDA NOTES - ** //
 
-// our action creator will be a function that returns a function
-// the url to fetch characters from is `https://swapi.co/api/people/`
-// remember that now we have controll over our thunk-based action creator
 
-// ACTION CREATOR --> thunk (a function that returns a function)
-    // - V1 - // -> Verbose 
-        // export const swapi_success = () => {
-        //     return dispatch => {
-        //         dispatch ({ type: SWAPI_SUCCESS})
+// ** -- THUNKS - ** //
+    // -!!- THUNK - function that returns a function
+    // -!!- THUNK can be used as action creator
+
+    // previous ACTION CREATORS returned an OBJECT
+        // EX: export const getCharacters = () => ({ Type: ABC_ABC })
+        // --> ^ = annon function that returns ACTION OBJECT
+
+    // -!- verbose THUNK
+        // export const getCharacters = () => {
+        //     return (dispatch) => {
+        //         dispatch({type: ABC_ABC})
         //     }
         // }
-    // - V2 - // -> Condensed
-    export const swapi_success = () => dispatch => {
-        // STEP 1
-            // DISPATCH START ACTION -> update UI to show dataFETCHING
-            dispatch({ type: SWAPI_FETCHING})
-        // STEP 2
-            // start API call
-        const request = axios.get('https://swapi.co/api/people/');
-            // THEN
-            request.then( ( { data } ) => {
-                
-                console.log(data)
-                // DISPATCH NEW ACTION
-                dispatch({
-                    type: SWAPI_SUCCESS,
-                    payload: data.data
+        // --> ^ annon function that returns anon function with dispatch passed into it
+        // --> ^^ returns an ACTION OBJECT by calling dispatch
+
+    export const getCharacters = () => {
+        // RETURN A FUNCTION 
+        return (dispatch) => {
+            // dispatch a starting action
+            dispatch({type: SWAPI_FETCHING})
+            // THEN ... start the API call
+            axios
+            .get('https://swapi.co/api/people/')
+                .then( res => {
+                    console.log(res)
                 })
-            })
-            // CATCH
-            .catch( ( err ) => {
-                console.log(err)
-                // DISPATCH NEW ACTION
-                dispatch({
-                    type: SWAPI_FAILURE,
-                    error: err
+                .catch( err => {
+                    console.log( err )
                 })
-            })
+        }
     }
+
+// ** -- END THUNK - ** //

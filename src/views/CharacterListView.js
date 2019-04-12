@@ -11,6 +11,7 @@ class CharacterListView extends React.Component {
 
   componentDidMount() {
     // call our action
+      // i added a button to do this....inside of characterList
   }
 
   render() {

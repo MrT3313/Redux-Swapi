@@ -8,25 +8,34 @@
 
 
 const initialState = {
-  characters: [],
   // Array characters, Boolean fetching, null error.
+  characters: [],
   err: '',
   isFetching: false
 };
 export const charsReducer = (state = initialState, action) => {
   switch (action.type) {
-    // Fill me in with the important reducers
-    // action types should be FETCHING, SUCCESS and FAILURE
-    // your switch statement should handle all of these cases.
 
     case SWAPI_FETCHING: 
       console.log('in starWars Reducer -> ACTION',action)
       console.log('in starWars Reducer -> PAYLOAD', action.payload)
       return {
-        ...state, 
+        ...state,
         isFetching: true,
-        err: 'you done messed up',
+        err: '',
       }
+
+
+
+
+
+
+
+
+
+
+
+
     // case SWAPI_SUCCESS:
     //   console.log(action)
     //   console.log(action.payload)

@@ -5,7 +5,7 @@
 // REDUX
   import { Provider } from "react-redux";
   import { createStore } from "redux";
-  import { logger } from 'redux-logger'
+  import logger from 'redux-logger'
   import { rootReducer } from './reducers'
   // middleware
     import { applyMiddleware } from 'redux';
@@ -22,10 +22,10 @@
 
 const store = createStore(
   rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   /* applyMiddleware goes here */
-  applyMiddleware(thunk, logger),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+  applyMiddleware(thunk, logger));
+  
 
 ReactDOM.render(
   <Provider store={store}>
