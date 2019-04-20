@@ -1,20 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import rootReducer from "./reducers";
-// needed dependancies
-// applyMiddleware from redux
-// thunk from redux-thunk
-// logger from redux-logger
-// rootReducer from ./reducers
+// DEPENDENCIES
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+// REDUX
+  import { Provider } from "react-redux";
+  import { createStore } from "redux";
+  import logger from 'redux-logger'
+  import { rootReducer } from './reducers'
+  // middleware
+    import { applyMiddleware } from 'redux';
+    import thunk from 'redux-thunk'
+
+  // COMPONENTS
+  import App from "./App";
+
+// CSS
+  import "./index.css";
+
+// -- ** START CODE ** -- //
+// -- ** START CODE ** -- //
 
 const store = createStore(
-  rootReducer
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   /* applyMiddleware goes here */
-);
+  applyMiddleware(thunk, logger));
+  
 
 ReactDOM.render(
   <Provider store={store}>

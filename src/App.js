@@ -1,7 +1,11 @@
-import React, { Component } from "react";
+// REACT
+  import React, { Component } from "react";
 
-import { CharacterListView } from "./views";
-import "./styles/App.css";
+// COMPONENTS
+  import { CharacterListView } from "./views";
+
+// CSS
+  import "./styles/App.css";
 
 class App extends Component {
   render() {
